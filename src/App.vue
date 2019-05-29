@@ -62,10 +62,27 @@
               </button>
             </div>
           </div>
+          <div id="accordion">
+            <div v-for="park in info" class="card">
+                <div class="card-header">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" v-bind:data-target="'#'+park['parkCode']" aria-expanded="false">
+                      {{park["fullName"]}}
+                    </button>
+                  </h5>
+                </div>
+
+                <div v-bind:id="park['parkCode']" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                  <div class="card-body">
+                    {{park["description"]}}
+                  </div>
+                </div>
+              </div>
+          </div>
         </main>
       </div>
     </div>
-    {{info}}
+
     
   </div>
 </template>
@@ -81,9 +98,14 @@ export default {
     }
   },
   mounted() {
-    const url = "https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key=8IM8T7wUtRMc8yiwfTaaWeTXMDJeEXhmZWDdmJ1b"
-    axios.get(url)
-        .then(response => this.info = response.data);
+    axios
+      .get('https://developer.nps.gov/api/v1/parks?limit=5&api_key=8IM8T7wUtRMc8yiwfTaaWeTXMDJeEXhmZWDdmJ1b')
+      .then(response => {
+        this.info = response["data"]["data"]
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 }
 </script>
