@@ -2,7 +2,7 @@
   <div id="app">
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">{{title}}</a>
-      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" v-model="searchQuery">
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="#">Github</a>
@@ -63,7 +63,7 @@
             </div>
           </div>
           <div id="accordion">
-            <div v-for="park in info" class="card">
+            <div v-for="park in filteredResources" class="card">
                 <div class="card-header">
                   <h5 class="mb-0">
                     <button class="btn btn-link" data-toggle="collapse" v-bind:data-target="'#'+park['parkCode']" aria-expanded="false">
@@ -93,21 +93,32 @@ export default {
   name: 'app',
   data () {
     return {
+      parks: [],
       title: 'National Park Services',
-      info: null
+      searchQuery: "",
+      filteredResources: []
     }
   },
   mounted() {
     axios
       .get('https://developer.nps.gov/api/v1/parks?limit=5&api_key=8IM8T7wUtRMc8yiwfTaaWeTXMDJeEXhmZWDdmJ1b')
       .then(response => {
-        this.info = response["data"]["data"]
+        this.parks = response["data"]["data"]
+        this.filteredResources = this.parks
       })
       .catch(error => {
         console.log(error)
       })
+  },
+  watch: {
+    searchQuery() {
+      this.filteredResources = this.parks.filter(park =>
+        park["fullName"].toUpperCase().includes(this.searchQuery.toUpperCase())
+      );
+    }
   }
-}
+
+};
 </script>
 
 <style>
