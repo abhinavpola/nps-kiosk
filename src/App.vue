@@ -65,18 +65,25 @@
         </main>
       </div>
     </div>
-
+    {{info}}
     
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'app',
   data () {
     return {
-      title: 'National Park Services'
+      title: 'National Park Services',
+      info: null
     }
+  },
+  mounted() {
+    const url = "https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key=8IM8T7wUtRMc8yiwfTaaWeTXMDJeEXhmZWDdmJ1b"
+    axios.get(url)
+        .then(response => this.info = response.data);
   }
 }
 </script>
