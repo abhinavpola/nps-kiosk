@@ -113,7 +113,7 @@
   </div>
 </div>
           <div id="accordion">
-            <div v-for="park in filteredResources" class="card">
+            <div v-for="park in filteredResources" v-bind:key="park" class="card">
               <div class="card-header">
                 <h5 class="mb-0">
                   <button
