@@ -97,6 +97,11 @@
               <button class="btn btn-sm btn-outline-secondary dropdown-toggle">Sort</button>
             </div>
           </div>
+          <div class="d-flex justify-content-center" v-if="loading">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
           <div id="accordion">
             <div v-for="park in filteredResources" class="card">
               <div class="card-header">
@@ -141,7 +146,8 @@ export default {
       title: "National Park Services",
       searchQuery: "",
       stateFilter: "",
-      filteredResources: []
+      filteredResources: [],
+      loading: true
     };
   },
   mounted() {
@@ -152,6 +158,7 @@ export default {
       .then(response => {
         this.parks = response["data"]["data"];
         this.filteredResources = this.parks;
+        this.loading = false;
       })
       .catch(error => {
         console.log(error);
