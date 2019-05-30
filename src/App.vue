@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">{{title}}</a>
       <input
         class="form-control form-control-dark w-100"
@@ -11,7 +11,7 @@
       >
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Github</a>
+          <a class="nav-link" href="https://github.com/abhinavpola/nps-kiosk">Github</a>
         </li>
       </ul>
     </nav>
@@ -171,7 +171,7 @@ export default {
         this.loading = false;
       })
       .catch(error => {
-        console.log(error);
+        //console.log(error);
       });
   },
   watch: {
