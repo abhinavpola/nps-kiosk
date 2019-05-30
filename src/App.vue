@@ -22,8 +22,10 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                State
-                <select name="state" id="state" v-model="stateFilter">
+                <span class="nav-link">State</span>
+                <div>
+                <select class="form-control form-control-dark" name="state" id="state" v-model="stateFilter">
+                  <option value="">Filter by state</option>
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
                   <option value="AZ">Arizona</option>
@@ -76,9 +78,17 @@
                   <option value="WI">Wisconsin</option>
                   <option value="WY">Wyoming</option>
                 </select>
+                </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Designation</a>
+                <span class="nav-link">Designation</span>
+                <input
+                  class="form-control form-control-dark w-100"
+                  type="text"
+                  placeholder="Search"
+                  aria-label="Search"
+                  v-model="desgQuery"
+                >
               </li>
             </ul>
           </div>
@@ -166,11 +176,17 @@ export default {
   },
   watch: {
     searchQuery() {
+      if (this.searchQuery === "") {
+        this.filteredResources = this.parks;
+      }
       this.filteredResources = this.filteredResources.filter(park =>
         park["fullName"].toUpperCase().includes(this.searchQuery.toUpperCase())
       );
     },
     stateFilter() {
+      if (this.searchQuery === "") {
+        this.filteredResources = this.parks;
+      }
       this.filteredResources = this.filteredResources.filter(park => 
         park["states"] === (this.stateFilter)
       )
@@ -186,5 +202,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+#state {
+  color: #495057;
 }
 </style>
