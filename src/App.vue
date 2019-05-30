@@ -156,6 +156,7 @@ export default {
       title: "National Park Services",
       searchQuery: "",
       stateFilter: "",
+      desgQuery: "",
       filteredResources: [],
       loading: true
     };
@@ -190,6 +191,17 @@ export default {
       this.filteredResources = this.filteredResources.filter(park => 
         park["states"] === (this.stateFilter)
       )
+    },
+    desgQuery() {
+      if (this.searchQuery === "") {
+        this.filteredResources = this.parks;
+      }
+      if (this.desgQuery === "") {
+        this.filteredResources = this.parks;
+      }
+      this.filteredResources = this.filteredResources.filter(park =>
+        park["designation"].toUpperCase().includes(this.desgQuery.toUpperCase())
+      );
     }
   }
 };
