@@ -22,10 +22,7 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="#">
-                  State
-                  <span class="sr-only">(current)</span>
-                </a>
+                State
                 <select name="state" id="state" v-model="stateFilter">
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
@@ -162,12 +159,12 @@ export default {
   },
   watch: {
     searchQuery() {
-      this.filteredResources = this.parks.filter(park =>
+      this.filteredResources = this.filteredResources.filter(park =>
         park["fullName"].toUpperCase().includes(this.searchQuery.toUpperCase())
       );
     },
     stateFilter() {
-      this.filteredResources = this.parks.filter(park => 
+      this.filteredResources = this.filteredResources.filter(park => 
         park["states"] === (this.stateFilter)
       )
     }
