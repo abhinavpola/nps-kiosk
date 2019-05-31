@@ -98,18 +98,17 @@
           <div
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
           >
-            <h1 class="h2">Results</h1>
+            <h2>Results</h2>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
                 <button class="btn btn-sm btn-outline-secondary">Filter</button>
                 <button class="btn btn-sm btn-outline-secondary">Filter</button>
               </div>
-              <button class="btn btn-sm btn-outline-secondary dropdown-toggle">Sort</button>
+              <button class="btn btn-sm btn-outline-secondary dropdown-toggle">Sort by distance</button>
             </div>
           </div>
           <div class="d-flex justify-content-center" v-if="loading">
   <div class="spinner-border" role="status">
-    <span class="sr-only">Loading...</span>
   </div>
 </div>
           <div id="accordion">
@@ -135,13 +134,19 @@
                 <div class="card-body">
                   {{park["description"]}}
                   <hr>
-                  <div class="row">
+                  <div class="d-flex justify-content-center" v-if="cardLoading">
+  <div class="spinner-border" role="status">
+  </div>
+</div>
+                  <div class="row" v-if="!cardLoading">
                     <div class="col-6">
+                      <h3>Visiting Centers</h3>
                       <div v-for="vc in visitingCenters" v-bind:key="vc">
                         {{vc["name"]}}
                       </div>
                     </div>
                     <div class="col-6">
+                      <h3>Campgrounds</h3>
                       <div v-for="cp in campGrounds" v-bind:key="cp">
                         {{cp["name"]}}
                       </div>
@@ -174,6 +179,7 @@ export default {
       desgQuery: "",
       filteredResources: [],
       loading: true,
+      cardLoading: true,
       visitingCenters: [],
       campGrounds: [],
     };
@@ -189,8 +195,10 @@ export default {
         return axios.get("https://developer.nps.gov/api/v1/campgrounds?parkCode="+pCode+"&api_key=8IM8T7wUtRMc8yiwfTaaWeTXMDJeEXhmZWDdmJ1b")
         .then(nextResponse => {
           this.campGrounds = nextResponse["data"]["data"];
+          this.cardLoading = false;
         })
       })
+      this.cardLoading = true;
     }
   },
   mounted() {
