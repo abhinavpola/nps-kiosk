@@ -142,6 +142,11 @@
                         {{vc["name"]}}
                       </div>
                     </div>
+                    <div class="col-6">
+                      <div v-for="cp in campGrounds" v-bind:key="cp">
+                        {{cp["name"]}}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -166,7 +171,8 @@ export default {
       desgQuery: "",
       filteredResources: [],
       loading: true,
-      visitingCenters: []
+      visitingCenters: [],
+      campGrounds: [],
     };
   },
   methods: {
@@ -177,6 +183,10 @@ export default {
       )
       .then(response => {
         this.visitingCenters = response["data"]["data"];
+        return axios.get("https://developer.nps.gov/api/v1/campgrounds?parkCode="+pCode+"&api_key=8IM8T7wUtRMc8yiwfTaaWeTXMDJeEXhmZWDdmJ1b")
+        .then(nextResponse => {
+          this.campGrounds = nextResponse["data"]["data"];
+        })
       })
     }
   },
