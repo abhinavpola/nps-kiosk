@@ -137,7 +137,6 @@
                   <hr>
                   <div class="row">
                     <div class="col-6">
-
                       <div v-for="vc in visitingCenters" v-bind:key="vc">
                         {{vc["name"]}}
                       </div>
@@ -147,6 +146,10 @@
                         {{cp["name"]}}
                       </div>
                     </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    alerts, etc.
                   </div>
                 </div>
               </div>
