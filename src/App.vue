@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
+    <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">{{title}}</a>
       <input
         class="form-control form-control-dark w-100"
@@ -121,6 +121,7 @@
                     data-toggle="collapse"
                     v-bind:data-target="'#'+park['parkCode']"
                     aria-expanded="false"
+                    v-on:click="getInfo(park['parkCode'])"
                   >{{park["fullName"]}}</button>
                 </h5>
               </div>
@@ -133,8 +134,14 @@
               >
                 <div class="card-body">
                   {{park["description"]}}
+                  <hr>
                   <div class="row">
-                    <div class="col-2"></div>
+                    <div class="col-6">
+
+                      <div v-for="vc in visitingCenters" v-bind:key="vc">
+                        {{vc["name"]}}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -158,8 +165,20 @@ export default {
       stateFilter: "",
       desgQuery: "",
       filteredResources: [],
-      loading: true
+      loading: true,
+      visitingCenters: []
     };
+  },
+  methods: {
+    getInfo: function(pCode) {
+      axios
+      .get(
+        "https://developer.nps.gov/api/v1/visitorcenters?parkCode="+pCode+"&api_key=8IM8T7wUtRMc8yiwfTaaWeTXMDJeEXhmZWDdmJ1b"
+      )
+      .then(response => {
+        this.visitingCenters = response["data"]["data"];
+      })
+    }
   },
   mounted() {
     axios
@@ -171,9 +190,6 @@ export default {
         this.filteredResources = this.parks;
         this.loading = false;
       })
-      .catch(error => {
-        //console.log(error);
-      });
   },
   watch: {
     searchQuery() {
