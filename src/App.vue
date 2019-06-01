@@ -24,60 +24,65 @@
               <li class="nav-item">
                 <span class="nav-link">State</span>
                 <div>
-                <select class="form-control form-control-dark" name="state" id="state" v-model="stateFilter">
-                  <option value="">Filter by state</option>
-                  <option value="AL">Alabama</option>
-                  <option value="AK">Alaska</option>
-                  <option value="AZ">Arizona</option>
-                  <option value="AR">Arkansas</option>
-                  <option value="CA">California</option>
-                  <option value="CO">Colorado</option>
-                  <option value="CT">Connecticut</option>
-                  <option value="DE">Delaware</option>
-                  <option value="DC">District Of Columbia</option>
-                  <option value="FL">Florida</option>
-                  <option value="GA">Georgia</option>
-                  <option value="HI">Hawaii</option>
-                  <option value="ID">Idaho</option>
-                  <option value="IL">Illinois</option>
-                  <option value="IN">Indiana</option>
-                  <option value="IA">Iowa</option>
-                  <option value="KS">Kansas</option>
-                  <option value="KY">Kentucky</option>
-                  <option value="LA">Louisiana</option>
-                  <option value="ME">Maine</option>
-                  <option value="MD">Maryland</option>
-                  <option value="MA">Massachusetts</option>
-                  <option value="MI">Michigan</option>
-                  <option value="MN">Minnesota</option>
-                  <option value="MS">Mississippi</option>
-                  <option value="MO">Missouri</option>
-                  <option value="MT">Montana</option>
-                  <option value="NE">Nebraska</option>
-                  <option value="NV">Nevada</option>
-                  <option value="NH">New Hampshire</option>
-                  <option value="NJ">New Jersey</option>
-                  <option value="NM">New Mexico</option>
-                  <option value="NY">New York</option>
-                  <option value="NC">North Carolina</option>
-                  <option value="ND">North Dakota</option>
-                  <option value="OH">Ohio</option>
-                  <option value="OK">Oklahoma</option>
-                  <option value="OR">Oregon</option>
-                  <option value="PA">Pennsylvania</option>
-                  <option value="RI">Rhode Island</option>
-                  <option value="SC">South Carolina</option>
-                  <option value="SD">South Dakota</option>
-                  <option value="TN">Tennessee</option>
-                  <option value="TX">Texas</option>
-                  <option value="UT">Utah</option>
-                  <option value="VT">Vermont</option>
-                  <option value="VA">Virginia</option>
-                  <option value="WA">Washington</option>
-                  <option value="WV">West Virginia</option>
-                  <option value="WI">Wisconsin</option>
-                  <option value="WY">Wyoming</option>
-                </select>
+                  <select
+                    class="form-control form-control-dark"
+                    name="state"
+                    id="state"
+                    v-model="stateFilter"
+                  >
+                    <option value>Filter by state</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                  </select>
                 </div>
               </li>
               <li class="nav-item">
@@ -108,9 +113,8 @@
             </div>
           </div>
           <div class="d-flex justify-content-center" v-if="loading">
-  <div class="spinner-border" role="status">
-  </div>
-</div>
+            <div class="spinner-border" role="status"></div>
+          </div>
           <div id="accordion">
             <div v-for="park in filteredResources" v-bind:key="park" class="card">
               <div class="card-header">
@@ -120,7 +124,7 @@
                     data-toggle="collapse"
                     v-bind:data-target="'#'+park['parkCode']"
                     aria-expanded="false"
-                    v-on:click="getInfo(park['parkCode'])"
+                    v-on:click="getInfo(park['parkCode'], park['latLong'])"
                   >{{park["fullName"]}}</button>
                 </h5>
               </div>
@@ -135,26 +139,51 @@
                   {{park["description"]}}
                   <hr>
                   <div class="d-flex justify-content-center" v-if="cardLoading">
-  <div class="spinner-border" role="status">
-  </div>
-</div>
+                    <div class="spinner-border" role="status"></div>
+                  </div>
                   <div class="row" v-if="!cardLoading">
                     <div class="col-6">
                       <h3>Visiting Centers</h3>
-                      <div v-for="vc in visitingCenters" v-bind:key="vc">
-                        {{vc["name"]}}
-                      </div>
+                      <div v-for="vc in visitingCenters" v-bind:key="vc">{{vc["name"]}}</div>
                     </div>
                     <div class="col-6">
                       <h3>Campgrounds</h3>
-                      <div v-for="cp in campGrounds" v-bind:key="cp">
-                        {{cp["name"]}}
-                      </div>
+                      <div v-for="cp in campGrounds" v-bind:key="cp">{{cp["name"]}}</div>
                     </div>
                   </div>
                   <hr>
+                  <h3>Latest information</h3>
+                  <div class="row" v-if="!cardLoading"> 
+                    <br>
+                    <div v-for="alert in alerts" v-bind:key="alert">
+                      <div
+                        class="alert alert-info"
+                        role="alert"
+                        v-if="alert['category'] === 'Information'"
+                      >{{ alert["title"] }} : {{ alert["description"] }}</div>
+                      <div
+                        class="alert alert-warning"
+                        role="alert"
+                        v-if="alert['category'] === 'Caution'"
+                      >{{ alert["title"] }} : {{ alert["description"] }}</div>
+                      <div
+                        class="alert alert-danger"
+                        role="alert"
+                        v-if="alert['category'] === 'Danger'"
+                      >{{ alert["title"] }} : {{ alert["description"] }}</div>
+                      <div
+                        class="alert alert-danger"
+                        role="alert"
+                        v-if="alert['category'] === 'Park Closure'"
+                      >{{ alert["title"] }} : {{ alert["description"] }}</div>
+                    </div>
+                  </div>
+                  <hr>
+                  <h3>Map</h3>
                   <div class="row">
-                    alerts, etc.
+                    <iframe width="100%" height="400" frameborder="0" style="border:0"
+                v-bind:src="'https://www.google.com/maps/embed/v1/place?q='+ coord +'&key=AIzaSyBnCgbAh4JbLSZUGgAfZxLLK_YAw5zgMuk&zoom=13'"
+                allowfullscreen></iframe>
                   </div>
                 </div>
               </div>
@@ -182,23 +211,42 @@ export default {
       cardLoading: true,
       visitingCenters: [],
       campGrounds: [],
+      alerts: [],
+      coord: ""
     };
   },
   methods: {
-    getInfo: function(pCode) {
+    getInfo: function(pCode, latlng) {
       axios
-      .get(
-        "https://developer.nps.gov/api/v1/visitorcenters?parkCode="+pCode+"&api_key=8IM8T7wUtRMc8yiwfTaaWeTXMDJeEXhmZWDdmJ1b"
-      )
-      .then(response => {
-        this.visitingCenters = response["data"]["data"];
-        return axios.get("https://developer.nps.gov/api/v1/campgrounds?parkCode="+pCode+"&api_key=8IM8T7wUtRMc8yiwfTaaWeTXMDJeEXhmZWDdmJ1b")
-        .then(nextResponse => {
-          this.campGrounds = nextResponse["data"]["data"];
-          this.cardLoading = false;
-        })
-      })
+        .get(
+          "https://developer.nps.gov/api/v1/visitorcenters?parkCode=" +
+            pCode +
+            "&api_key=8IM8T7wUtRMc8yiwfTaaWeTXMDJeEXhmZWDdmJ1b"
+        )
+        .then(response => {
+          this.visitingCenters = response["data"]["data"];
+          return axios
+            .get(
+              "https://developer.nps.gov/api/v1/campgrounds?parkCode=" +
+                pCode +
+                "&api_key=8IM8T7wUtRMc8yiwfTaaWeTXMDJeEXhmZWDdmJ1b"
+            )
+            .then(nextResponse => {
+              this.campGrounds = nextResponse["data"]["data"];
+              return axios
+                .get(
+                  "https://developer.nps.gov/api/v1/alerts?parkCode=" +
+                    pCode +
+                    "&api_key=8IM8T7wUtRMc8yiwfTaaWeTXMDJeEXhmZWDdmJ1b"
+                )
+                .then(alertResponse => {
+                  this.alerts = alertResponse["data"]["data"];
+                  this.cardLoading = false;
+                });
+            });
+        });
       this.cardLoading = true;
+      this.coord = latlng.replace("lat:", "").replace("long:", "");
     }
   },
   mounted() {
@@ -210,7 +258,7 @@ export default {
         this.parks = response["data"]["data"];
         this.filteredResources = this.parks;
         this.loading = false;
-      })
+      });
   },
   watch: {
     searchQuery() {
@@ -225,9 +273,9 @@ export default {
       if (this.searchQuery === "") {
         this.filteredResources = this.parks;
       }
-      this.filteredResources = this.filteredResources.filter(park => 
-        park["states"] === (this.stateFilter)
-      )
+      this.filteredResources = this.filteredResources.filter(
+        park => park["states"] === this.stateFilter
+      );
     },
     desgQuery() {
       if (this.searchQuery === "") {
