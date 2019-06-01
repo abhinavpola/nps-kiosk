@@ -180,7 +180,7 @@
                   </div>
                   <hr>
                   <h3>Map</h3>
-                  <div class="row">
+                  <div class="row" v-if="!cardLoading">
                     <iframe width="100%" height="400" frameborder="0" style="border:0"
                 v-bind:src="'https://www.google.com/maps/embed/v1/place?q='+ coord +'&key=AIzaSyBnCgbAh4JbLSZUGgAfZxLLK_YAw5zgMuk&zoom=13'"
                 allowfullscreen></iframe>
@@ -245,8 +245,8 @@ export default {
                 });
             });
         });
-      this.cardLoading = true;
       this.coord = latlng.replace("lat:", "").replace("long:", "");
+      this.cardLoading = true;
     }
   },
   mounted() {
