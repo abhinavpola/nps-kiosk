@@ -66,11 +66,11 @@
                     <option value="NY">New York</option>
                     <option value="NC">North Carolina</option>
                     <option value="ND">North Dakota</option>
-                    <option value="OH">Ohio</option>
-                    <option value="OK">Oklahoma</option>
-                    <option value="OR">Oregon</option>
-                    <option value="PA">Pennsylvania</option>
-                    <option value="RI">Rhode Island</option>
+        <option value="OH">Ohio</option>
+        <option value="OK">Oklahoma</option>
+        <option value="OR">Oregon</option>
+        <option value="PA">Pennsylvania</option>
+        <option value="RI">Rhode Island</option>
                     <option value="SC">South Carolina</option>
                     <option value="SD">South Dakota</option>
                     <option value="TN">Tennessee</option>
@@ -142,11 +142,11 @@
                     <div class="spinner-border" role="status"></div>
                   </div>
                   <div class="row" v-if="!cardLoading">
-                    <div class="col-6">
+                    <div class="col-sm-6">
                       <h3>Visiting Centers</h3>
                       <div v-for="vc in visitingCenters" v-bind:key="vc">{{vc["name"]}}</div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-sm-6">
                       <h3>Campgrounds</h3>
                       <div v-for="cp in campGrounds" v-bind:key="cp">{{cp["name"]}}</div>
                     </div>
