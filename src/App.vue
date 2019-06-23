@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+
+    <!--Navigation & Search-->
     <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">{{title}}</a>
       <input
@@ -15,11 +17,14 @@
         </li>
       </ul>
     </nav>
+    <!--/Navigation & Search-->
 
     <div class="container-fluid">
       <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
           <div class="sidebar-sticky">
+
+            <!-- State and Designation Filtering -->
             <ul class="nav flex-column">
               <li class="nav-item">
                 <span class="nav-link">State</span>
@@ -96,6 +101,8 @@
                 >
               </li>
             </ul>
+            <!-- /State and Designation Filtering -->
+
           </div>
         </nav>
 
