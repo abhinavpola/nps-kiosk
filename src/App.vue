@@ -116,7 +116,7 @@
             <div class="spinner-border" role="status"></div>
           </div>
           <div id="accordion">
-            <div v-for="(park, pindex) in filteredResources" class="card">
+            <div v-for="(park, pindex) in filteredResources" class="card" v-bind:key="'park'+pindex">
               <div class="card-header">
                 <h5 class="mb-0">
                   <button
