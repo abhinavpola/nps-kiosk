@@ -1,3 +1,7 @@
+* {
+  border-radius: 0 !important;
+}
+
 body {
     font-size: .875rem;
   }
@@ -85,7 +89,11 @@ body {
   .navbar .form-control {
     padding: .75rem 1rem;
     border-width: 0;
-    border-radius: 0;
+    border-radius: 0 !important;
+  }
+
+  .form-control {
+    border-radius: 0 !important;
   }
   
   .form-control-dark {
