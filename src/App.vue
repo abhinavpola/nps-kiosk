@@ -116,7 +116,7 @@
             <div class="spinner-border" role="status"></div>
           </div>
           <div id="accordion">
-            <div v-for="(park, pindex) in filteredResources" v-bind:key="park" class="card">
+            <div v-for="(park, pindex) in filteredResources" class="card">
               <div class="card-header">
                 <h5 class="mb-0">
                   <button
@@ -142,48 +142,48 @@
                     <div class="spinner-border" role="status"></div>
                   </div>
                   <div class="row" v-if="!cardLoading">
-                    <div class="col-sm-4">
+                    <div class="col-sm-4" v-for="(article, idx) in articles" v-bind:key="idx">
                       <h4>Articles</h4>
                       <div class="card">
-                        <img class="card-img-top" src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg" alt="Card image cap">
+                        <img class="card-img-top d-block w-100" v-bind:src="article['listingimage']['url']">
                         <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Read more</a>
+                          <h5 class="card-title">{{article["title"]}}</h5>
+                          <p class="card-text">{{article["listingdescription"]}}</p>
+                          <a v-bind:href="article['url']" class="btn btn-primary">Read more</a>
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4" v-for="(newsItem, idx) in news" v-bind:key="'news'+idx">
                       <h4>News</h4>
                       <div class="card">
-                      <img class="card-img-top" src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg" alt="Card image cap">
+                      <img class="card-img-top d-block w-100" v-bind:src="newsItem['image']['url']">
                       <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Read more</a>
+                        <h5 class="card-title">{{newsItem["title"]}}</h5>
+                        <p class="card-text">{{newsItem["abstract"]}}</p>
+                        <a v-bind:href="newsItem['url']" class="btn btn-primary">Read more</a>
                       </div>
                     </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4" v-for="(event, idx) in events" v-bind:key="'event'+idx">
                       <h4>Events</h4>
                       <div class="card">
-                        <img class="card-img-top" src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg" alt="Card image cap">
+                        <img class="card-img-top d-block w-100" src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg" alt="Card image cap">
                         <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Read more</a>
+                          <h5 class="card-title">{{event["title"]}}</h5>
+                          <p class="card-text">{{event["description"]}}</p>
+                          <a v-bind:href="event['url']" class="btn btn-primary">Read more</a>
                         </div>
                       </div>
                     </div>
                   
                   </div>
-
+<hr>
                   <div class="row" v-if="!cardLoading">
                     <div class="col-sm-6">
                       <h3>Visiting Centers</h3>
                       <div v-bind:id="'carousel' + pindex" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
-                          <div class="carousel-item" v-for="(vc, index) in visitingCenters" :class="{ 'active': index === 0 }" v-bind:key="vc">
+                          <div class="carousel-item" v-for="(vc, index) in visitingCenters" :class="{ 'active': index === 0 }" v-bind:key="'vc'+index">
                             <img class="d-block w-100" src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg" alt="">
                             <div class="carousel-caption d-none d-md-block">
                               <h5>{{vc["name"]}}</h5>
@@ -205,7 +205,7 @@
                       <h3>Campgrounds</h3>
                       <div v-bind:id="'othercarousel' + pindex" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
-                          <div class="carousel-item" v-for="(cp, index2) in campGrounds" :class="{ 'active': index2 === 0 }" v-bind:key="cp">
+                          <div class="carousel-item" v-for="(cp, index2) in campGrounds" :class="{ 'active': index2 === 0 }" v-bind:key="'cp'+index2">
                             <img class="d-block w-100" src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg" alt="">
                             <div class="carousel-caption d-none d-md-block">
                               <h5>{{cp["name"]}}</h5>
@@ -228,7 +228,7 @@
                   <h3>Latest alerts</h3>
                   <div class="row" v-if="!cardLoading"> 
                     <br>
-                    <div v-for="alert in alerts" v-bind:key="alert">
+                    <div v-for="(alert, idx) in alerts" v-bind:key="'alert'+idx">
                       <div
                         class="alert alert-info"
                         role="alert"
@@ -285,6 +285,9 @@ export default {
       visitingCenters: [],
       campGrounds: [],
       alerts: [],
+      articles: [],
+      news: [],
+      events: [],
       coord: ""
     };
   },
@@ -320,7 +323,32 @@ export default {
                 )
                 .then(alertResponse => {
                   this.alerts = alertResponse["data"]["data"];
-                  this.cardLoading = false;
+                  return axios.get(
+                    "https://developer.nps.gov/api/v1/articles?parkCode="+pCode+"&limit=1&start=1&api_key=8IM8T7wUtRMc8yiwfTaaWeTXMDJeEXhmZWDdmJ1b"
+                  ).then(articleResponse => {
+                    this.articles = articleResponse["data"]["data"];
+                    if (this.articles.length == 0) {
+                      this.articles = [{"title": "No new articles",
+                        "listingdescription": "",
+                        "url": "",
+                        "listingimage": {"url": "https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg"}}]
+                    }
+                    return axios.get(
+                      "https://developer.nps.gov/api/v1/news?parkCode="+pCode+"&limit=1&start=1&api_key=8IM8T7wUtRMc8yiwfTaaWeTXMDJeEXhmZWDdmJ1b"
+                    ).then(newsResponse => {
+                      this.news = newsResponse["data"]["data"];
+                      if (this.news.length == 0) {
+                      this.news = [{"title": "No recent news",
+                        "abstract": "",
+                        "url": "",
+                        "image": {"url": "https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg"}}]                      
+                    }
+                    this.events = [{"title": "No events currently",
+                    "description": "",
+                    "url":""}]
+                    this.cardLoading = false;
+                    })
+                  })
                 });
             });
         });
