@@ -225,6 +225,9 @@ export default {
         )
         .then(response => {
           this.visitingCenters = response["data"]["data"];
+          if (this.visitingCenters.length == 0) {
+                this.visitingCenters = [{"name": "No visiting center at this location"}]
+              }
           return axios
             .get(
               "https://developer.nps.gov/api/v1/campgrounds?parkCode=" +
@@ -233,6 +236,9 @@ export default {
             )
             .then(nextResponse => {
               this.campGrounds = nextResponse["data"]["data"];
+              if (this.campGrounds.length == 0) {
+                this.campGrounds = [{"name": "No campgrounds at this location"}]
+              }
               return axios
                 .get(
                   "https://developer.nps.gov/api/v1/alerts?parkCode=" +
