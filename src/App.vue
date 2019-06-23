@@ -66,11 +66,11 @@
                     <option value="NY">New York</option>
                     <option value="NC">North Carolina</option>
                     <option value="ND">North Dakota</option>
-        <option value="OH">Ohio</option>
-        <option value="OK">Oklahoma</option>
-        <option value="OR">Oregon</option>
-        <option value="PA">Pennsylvania</option>
-        <option value="RI">Rhode Island</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
                     <option value="SC">South Carolina</option>
                     <option value="SD">South Dakota</option>
                     <option value="TN">Tennessee</option>
@@ -104,13 +104,16 @@
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
           >
             <h2>Results</h2>
-            
           </div>
           <div class="d-flex justify-content-center" v-if="loading">
             <div class="spinner-border" role="status"></div>
           </div>
           <div id="accordion">
-            <div v-for="(park, pindex) in filteredResources" class="card" v-bind:key="'park'+pindex">
+            <div
+              v-for="(park, pindex) in filteredResources"
+              class="card"
+              v-bind:key="'park'+pindex"
+            >
               <div class="card-header">
                 <h5 class="mb-0">
                   <button
@@ -139,7 +142,10 @@
                     <div class="col-sm-4" v-for="(article, idx) in articles" v-bind:key="idx">
                       <h4>Articles</h4>
                       <div class="card">
-                        <img class="card-img-top d-block w-100" v-bind:src="article['listingimage']['url']">
+                        <img
+                          class="card-img-top d-block w-100"
+                          v-bind:src="article['listingimage']['url']"
+                        >
                         <div class="card-body">
                           <h5 class="card-title">{{article["title"]}}</h5>
                           <p class="card-text">{{article["listingdescription"]}}</p>
@@ -150,18 +156,25 @@
                     <div class="col-sm-4" v-for="(newsItem, idx) in news" v-bind:key="'news'+idx">
                       <h4>News</h4>
                       <div class="card">
-                      <img class="card-img-top d-block w-100" v-bind:src="newsItem['image']['url']">
-                      <div class="card-body">
-                        <h5 class="card-title">{{newsItem["title"]}}</h5>
-                        <p class="card-text">{{newsItem["abstract"]}}</p>
-                        <a v-bind:href="newsItem['url']" class="btn btn-primary">Read more</a>
+                        <img
+                          class="card-img-top d-block w-100"
+                          v-bind:src="newsItem['image']['url']"
+                        >
+                        <div class="card-body">
+                          <h5 class="card-title">{{newsItem["title"]}}</h5>
+                          <p class="card-text">{{newsItem["abstract"]}}</p>
+                          <a v-bind:href="newsItem['url']" class="btn btn-primary">Read more</a>
+                        </div>
                       </div>
-                    </div>
                     </div>
                     <div class="col-sm-4" v-for="(event, idx) in events" v-bind:key="'event'+idx">
                       <h4>Events</h4>
                       <div class="card">
-                        <img class="card-img-top d-block w-100" src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg" alt="Card image cap">
+                        <img
+                          class="card-img-top d-block w-100"
+                          src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg"
+                          alt="Card image cap"
+                        >
                         <div class="card-body">
                           <h5 class="card-title">{{event["title"]}}</h5>
                           <p class="card-text">{{event["description"]}}</p>
@@ -169,27 +182,49 @@
                         </div>
                       </div>
                     </div>
-                  
                   </div>
-<hr>
+                  <hr>
                   <div class="row" v-if="!cardLoading">
                     <div class="col-sm-6">
                       <h3>Visiting Centers</h3>
-                      <div v-bind:id="'carousel' + pindex" class="carousel slide" data-ride="carousel">
+                      <div
+                        v-bind:id="'carousel' + pindex"
+                        class="carousel slide"
+                        data-ride="carousel"
+                      >
                         <div class="carousel-inner">
-                          <div class="carousel-item" v-for="(vc, index) in visitingCenters" :class="{ 'active': index === 0 }" v-bind:key="'vc'+index">
-                            <img class="d-block w-100" src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg" alt="">
+                          <div
+                            class="carousel-item"
+                            v-for="(vc, index) in visitingCenters"
+                            :class="{ 'active': index === 0 }"
+                            v-bind:key="'vc'+index"
+                          >
+                            <img
+                              class="d-block w-100"
+                              src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg"
+                              alt
+                            >
                             <div class="carousel-caption d-none d-md-block">
                               <h5>{{vc["name"]}}</h5>
                               <p>{{vc["description"]}}</p>
                             </div>
                           </div>
                         </div>
-                        <a class="carousel-control-prev" v-bind:href="'#carousel' + pindex" role="button" data-slide="prev">
+                        <a
+                          class="carousel-control-prev"
+                          v-bind:href="'#carousel' + pindex"
+                          role="button"
+                          data-slide="prev"
+                        >
                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                           <span class="sr-only">Previous</span>
                         </a>
-                        <a class="carousel-control-next" v-bind:href="'#carousel' + pindex" role="button" data-slide="next">
+                        <a
+                          class="carousel-control-next"
+                          v-bind:href="'#carousel' + pindex"
+                          role="button"
+                          data-slide="next"
+                        >
                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
                           <span class="sr-only">Next</span>
                         </a>
@@ -197,21 +232,44 @@
                     </div>
                     <div class="col-sm-6">
                       <h3>Campgrounds</h3>
-                      <div v-bind:id="'othercarousel' + pindex" class="carousel slide" data-ride="carousel">
+                      <div
+                        v-bind:id="'othercarousel' + pindex"
+                        class="carousel slide"
+                        data-ride="carousel"
+                      >
                         <div class="carousel-inner">
-                          <div class="carousel-item" v-for="(cp, index2) in campGrounds" :class="{ 'active': index2 === 0 }" v-bind:key="'cp'+index2">
-                            <img class="d-block w-100" src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg" alt="">
+                          <div
+                            class="carousel-item"
+                            v-for="(cp, index2) in campGrounds"
+                            :class="{ 'active': index2 === 0 }"
+                            v-bind:key="'cp'+index2"
+                          >
+                            <img
+                              class="d-block w-100"
+                              src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg"
+                              alt
+                            >
                             <div class="carousel-caption d-none d-md-block">
                               <h5>{{cp["name"]}}</h5>
                               <p>{{cp["description"]}}</p>
                             </div>
                           </div>
                         </div>
-                        <a class="carousel-control-prev" v-bind:href="'#othercarousel' + pindex" role="button" data-slide="prev">
+                        <a
+                          class="carousel-control-prev"
+                          v-bind:href="'#othercarousel' + pindex"
+                          role="button"
+                          data-slide="prev"
+                        >
                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                           <span class="sr-only">Previous</span>
                         </a>
-                        <a class="carousel-control-next" v-bind:href="'#othercarousel' + pindex" role="button" data-slide="next">
+                        <a
+                          class="carousel-control-next"
+                          v-bind:href="'#othercarousel' + pindex"
+                          role="button"
+                          data-slide="next"
+                        >
                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
                           <span class="sr-only">Next</span>
                         </a>
@@ -220,7 +278,7 @@
                   </div>
                   <hr>
                   <h3>Latest alerts</h3>
-                  <div class="row" v-if="!cardLoading"> 
+                  <div class="row" v-if="!cardLoading">
                     <br>
                     <div v-for="(alert, idx) in alerts" v-bind:key="'alert'+idx">
                       <div
@@ -248,9 +306,14 @@
                   <hr>
                   <h3>Map</h3>
                   <div class="row" v-if="!cardLoading">
-                    <iframe width="100%" height="400" frameborder="0" style="border:0"
-                v-bind:src="'https://www.google.com/maps/embed/v1/place?q='+ coord +'&key=AIzaSyBnCgbAh4JbLSZUGgAfZxLLK_YAw5zgMuk&zoom=13'"
-                allowfullscreen></iframe>
+                    <iframe
+                      width="100%"
+                      height="400"
+                      frameborder="0"
+                      style="border:0"
+                      v-bind:src="'https://www.google.com/maps/embed/v1/place?q='+ coord +'&key=AIzaSyBnCgbAh4JbLSZUGgAfZxLLK_YAw5zgMuk&zoom=13'"
+                      allowfullscreen
+                    ></iframe>
                   </div>
                 </div>
               </div>
@@ -296,8 +359,10 @@ export default {
         .then(response => {
           this.visitingCenters = response["data"]["data"];
           if (this.visitingCenters.length == 0) {
-                this.visitingCenters = [{"name": "No visiting center at this location"}]
-              }
+            this.visitingCenters = [
+              { name: "No visiting center at this location" }
+            ];
+          }
           return axios
             .get(
               "https://developer.nps.gov/api/v1/campgrounds?parkCode=" +
@@ -307,7 +372,9 @@ export default {
             .then(nextResponse => {
               this.campGrounds = nextResponse["data"]["data"];
               if (this.campGrounds.length == 0) {
-                this.campGrounds = [{"name": "No campgrounds at this location"}]
+                this.campGrounds = [
+                  { name: "No campgrounds at this location" }
+                ];
               }
               return axios
                 .get(
@@ -317,32 +384,58 @@ export default {
                 )
                 .then(alertResponse => {
                   this.alerts = alertResponse["data"]["data"];
-                  return axios.get(
-                    "https://developer.nps.gov/api/v1/articles?parkCode="+pCode+"&limit=1&start=1&api_key=8IM8T7wUtRMc8yiwfTaaWeTXMDJeEXhmZWDdmJ1b"
-                  ).then(articleResponse => {
-                    this.articles = articleResponse["data"]["data"];
-                    if (this.articles.length == 0) {
-                      this.articles = [{"title": "No new articles",
-                        "listingdescription": "",
-                        "url": "",
-                        "listingimage": {"url": "https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg"}}]
-                    }
-                    return axios.get(
-                      "https://developer.nps.gov/api/v1/news?parkCode="+pCode+"&limit=1&start=1&api_key=8IM8T7wUtRMc8yiwfTaaWeTXMDJeEXhmZWDdmJ1b"
-                    ).then(newsResponse => {
-                      this.news = newsResponse["data"]["data"];
-                      if (this.news.length == 0) {
-                      this.news = [{"title": "No recent news",
-                        "abstract": "",
-                        "url": "",
-                        "image": {"url": "https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg"}}]                      
-                    }
-                    this.events = [{"title": "No events currently",
-                    "description": "",
-                    "url":""}]
-                    this.cardLoading = false;
-                    })
-                  })
+                  return axios
+                    .get(
+                      "https://developer.nps.gov/api/v1/articles?parkCode=" +
+                        pCode +
+                        "&limit=1&start=1&api_key=8IM8T7wUtRMc8yiwfTaaWeTXMDJeEXhmZWDdmJ1b"
+                    )
+                    .then(articleResponse => {
+                      this.articles = articleResponse["data"]["data"];
+                      if (this.articles.length == 0) {
+                        this.articles = [
+                          {
+                            title: "No new articles",
+                            listingdescription: "",
+                            url: "",
+                            listingimage: {
+                              url:
+                                "https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg"
+                            }
+                          }
+                        ];
+                      }
+                      return axios
+                        .get(
+                          "https://developer.nps.gov/api/v1/news?parkCode=" +
+                            pCode +
+                            "&limit=1&start=1&api_key=8IM8T7wUtRMc8yiwfTaaWeTXMDJeEXhmZWDdmJ1b"
+                        )
+                        .then(newsResponse => {
+                          this.news = newsResponse["data"]["data"];
+                          if (this.news.length == 0) {
+                            this.news = [
+                              {
+                                title: "No recent news",
+                                abstract: "",
+                                url: "",
+                                image: {
+                                  url:
+                                    "https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg"
+                                }
+                              }
+                            ];
+                          }
+                          this.events = [
+                            {
+                              title: "No events currently",
+                              description: "",
+                              url: ""
+                            }
+                          ];
+                          this.cardLoading = false;
+                        });
+                    });
                 });
             });
         });
