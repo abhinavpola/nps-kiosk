@@ -142,6 +142,43 @@
                     <div class="spinner-border" role="status"></div>
                   </div>
                   <div class="row" v-if="!cardLoading">
+                    <div class="col-sm-4">
+                      <h4>Articles</h4>
+                      <div class="card">
+                        <img class="card-img-top" src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg" alt="Card image cap">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-primary">Read more</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <h4>News</h4>
+                      <div class="card">
+                      <img class="card-img-top" src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg" alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Read more</a>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <h4>Events</h4>
+                      <div class="card">
+                        <img class="card-img-top" src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg" alt="Card image cap">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-primary">Read more</a>
+                        </div>
+                      </div>
+                    </div>
+                  
+                  </div>
+
+                  <div class="row" v-if="!cardLoading">
                     <div class="col-sm-6">
                       <h3>Visiting Centers</h3>
                       <div v-bind:id="'carousel' + pindex" class="carousel slide" data-ride="carousel">
@@ -150,7 +187,7 @@
                             <img class="d-block w-100" src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg" alt="">
                             <div class="carousel-caption d-none d-md-block">
                               <h5>{{vc["name"]}}</h5>
-                              <p>...</p>
+                              <p>{{vc["description"]}}</p>
                             </div>
                           </div>
                         </div>
@@ -172,7 +209,7 @@
                             <img class="d-block w-100" src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg" alt="">
                             <div class="carousel-caption d-none d-md-block">
                               <h5>{{cp["name"]}}</h5>
-                              <p>...</p>
+                              <p>{{cp["description"]}}</p>
                             </div>
                           </div>
                         </div>
@@ -188,7 +225,7 @@
                     </div>
                   </div>
                   <hr>
-                  <h3>Latest information</h3>
+                  <h3>Latest alerts</h3>
                   <div class="row" v-if="!cardLoading"> 
                     <br>
                     <div v-for="alert in alerts" v-bind:key="alert">
