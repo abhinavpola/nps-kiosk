@@ -116,7 +116,7 @@
             <div class="spinner-border" role="status"></div>
           </div>
           <div id="accordion">
-            <div v-for="park in filteredResources" v-bind:key="park" class="card">
+            <div v-for="(park, pindex) in filteredResources" v-bind:key="park" class="card">
               <div class="card-header">
                 <h5 class="mb-0">
                   <button
@@ -144,11 +144,47 @@
                   <div class="row" v-if="!cardLoading">
                     <div class="col-sm-6">
                       <h3>Visiting Centers</h3>
-                      <div v-for="vc in visitingCenters" v-bind:key="vc">{{vc["name"]}}</div>
+                      <div v-bind:id="'carousel' + pindex" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                          <div class="carousel-item" v-for="(vc, index) in visitingCenters" :class="{ 'active': index === 0 }" v-bind:key="vc">
+                            <img class="d-block w-100" src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg" alt="">
+                            <div class="carousel-caption d-none d-md-block">
+                              <h5>{{vc["name"]}}</h5>
+                              <p>...</p>
+                            </div>
+                          </div>
+                        </div>
+                        <a class="carousel-control-prev" v-bind:href="'#carousel' + pindex" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" v-bind:href="'#carousel' + pindex" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </a>
+                      </div>
                     </div>
                     <div class="col-sm-6">
                       <h3>Campgrounds</h3>
-                      <div v-for="cp in campGrounds" v-bind:key="cp">{{cp["name"]}}</div>
+                      <div v-bind:id="'othercarousel' + pindex" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                          <div class="carousel-item" v-for="(cp, index2) in campGrounds" :class="{ 'active': index2 === 0 }" v-bind:key="cp">
+                            <img class="d-block w-100" src="https://images.homedepot-static.com/productImages/0b10f2de-892e-42b7-aed4-6fa738027a16/svn/storm-matte-formica-laminate-sheets-009121258512000-64_400_compressed.jpg" alt="">
+                            <div class="carousel-caption d-none d-md-block">
+                              <h5>{{cp["name"]}}</h5>
+                              <p>...</p>
+                            </div>
+                          </div>
+                        </div>
+                        <a class="carousel-control-prev" v-bind:href="'#othercarousel' + pindex" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" v-bind:href="'#othercarousel' + pindex" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
                   <hr>
